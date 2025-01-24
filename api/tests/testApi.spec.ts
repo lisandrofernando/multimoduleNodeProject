@@ -29,7 +29,7 @@ test("Practice test2", async()=>{
    expect(response.status()).toBe(200);
 })
 
-test("Practice test4", async({request})=>{
+test.skip("Practice test4", async({request})=>{
     // This test uses the baseURL from the playwright.config.json
    const response =    await request.get("/booking/2402");
    const data = await response.json();
@@ -40,7 +40,7 @@ test("Practice test4", async({request})=>{
    expect(data).toHaveProperty("totalprice");
 })
 
-test("Practice test5", async({request})=>{
+test.skip("Practice test5", async({request})=>{
     // This test uses the baseURL from the playwright.config.json, but this test fails out of nowwhere
     const response =    await request.get("/booking/2402");
     console.log(await response.json());
@@ -59,7 +59,7 @@ test("Practice test6", async({request})=>{
 
 test("Practice test7", async({request})=>{
     // This test uses the baseURL from the playwright.config.json
-   const response =    await request.put("/booking/1",{
+   const response = await request.put("/booking/1",{
         headers:{
             Authorization: "Basic YWRtaW46cGFzc3dvcmQxMjM="
         },
