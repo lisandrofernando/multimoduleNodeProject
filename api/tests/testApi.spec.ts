@@ -43,9 +43,9 @@ test("Practice test4", async({request})=>{
 test("Practice test5", async({request})=>{
     // This test uses the baseURL from the playwright.config.json, but this test fails out of nowwhere
     const response =    await request.get("/booking/2402");
-    console.log(await response.body());
+    console.log(await response.json());
     expect(await response.status()).toBe(200);
-    expect(await response.json()).toMatchObject(apiData)
+    expect(await response.json()).toMatchObject(apiData.getCallData)
 })
 
 test("Practice test6", async({request})=>{
