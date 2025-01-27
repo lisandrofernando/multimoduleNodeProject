@@ -2,7 +2,11 @@
   "name": "api",
   "version": "1.0.0",
   "main": "index.js",
-  "scripts": {},
+  "scripts": {
+    "env:dev": "cross-env test_env=dev npx playwright test",
+    "allure-results": "npx allure generate ./allure-results --clean",
+    "allure-open": "npx allure open ./allure-reporter"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
