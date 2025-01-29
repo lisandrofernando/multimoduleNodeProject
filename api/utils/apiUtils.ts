@@ -1,5 +1,6 @@
 import {request} from "@playwright/test";
 import ENV from "../envUtils/env.ts";
+import RequestBodyBuilder from "./RequestBodyBuilder.ts";
 
 class apiUtils {
 
@@ -14,6 +15,34 @@ class apiUtils {
         })
         const data = await response.json();
         console.log(data);
+        return response;
+    }
+
+    async postBookingDetails(){
+        const req = await request.newContext();
+        const requestBody = RequestBodyBuilder.getPostBody();
+        const response =  await req.post(`${ENV.URI}booking`, {
+            ignoreHTTPSErrors: true,
+            headers:{
+                'Accept': 'application/json'
+            },
+            data: JSON.stringify(requestBody),
+        })
+        console.log("Response here",response);
+        return response;
+    }
+
+    async putBookingDetails(){
+        const req = await request.newContext();
+        const requestBody = RequestBodyBuilder.getPostBody();
+        const response =  await req.put(`${ENV.URI}booking/1`, {
+            ignoreHTTPSErrors: true,
+            headers:{
+                'Authorization': "Basic YWRtaW46cGFzc3dvcmQxMjM="
+            },
+            data: JSON.stringify(requestBody),
+        })
+        console.log("Response here",response);
         return response;
     }
 
