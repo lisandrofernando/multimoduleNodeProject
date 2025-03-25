@@ -13,22 +13,29 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [22]  # Test with different Node.js versions if needed
-        module: [module1, module2] # Define modules here
+        node-version: [22]  # Updated Node.js version to 22
+        module: [module1, module2]
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v3
 
       - name: Setup Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
           cache: "npm"
 
       - name: Install dependencies (${{ matrix.module }})
         working-directory: ${{ matrix.module }}
-        run: npm ci # Or yarn install
+        run: |
+          if [ -f "${{ matrix.module }}/yarn.lock" ]; then
+            yarn install --frozen-lockfile
+          elif [ -f "${{ matrix.module }}/package-lock.json" ]; then
+            npm ci
+          else
+            npm install
+          fi
 
       - name: Install Playwright Browsers (${{ matrix.module }})
         working-directory: ${{ matrix.module }}
@@ -45,5 +52,3 @@ jobs:
           name: playwright-report-${{ matrix.module }}-${{ matrix.node-version }}
           path: ${{ matrix.module }}/playwright-report/
           retention-days: 10
-
-
