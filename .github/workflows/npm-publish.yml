@@ -1,54 +1,47 @@
 name: Playwright Tests
 
 on:
-  push:
-    branches:
-      - main  # Or your main branch (e.g., "master")
-  pull_request:
-    branches:
-      - main
+    push:
+        branches:
+            - main  # Or your main branch
+    pull_request:
+        branches:
+            - main
 
 jobs:
-  test:
-    runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node-version: [22]  # Updated Node.js version to 22
-        module: [module1, module2]
+    test:
+        runs-on: ubuntu-latest
+        strategy:
+            matrix:
+                node-version: [22]
+                module: [ui, api]  # Define your modules
 
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
+        steps:
+            - name: Checkout code
+              uses: actions/checkout@v3
 
-      - name: Setup Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v3
-        with:
-          node-version: ${{ matrix.node-version }}
-          cache: "npm"
+            - name: Setup Node.js ${{ matrix.node-version }}
+              uses: actions/setup-node@v3
+              with:
+                node-version: ${{ matrix.node-version }}
+                cache: "npm"
 
-      - name: Install dependencies (${{ matrix.module }})
-        working-directory: ${{ matrix.module }}
-        run: |
-          if [ -f "${{ matrix.module }}/yarn.lock" ]; then
-            yarn install --frozen-lockfile
-          elif [ -f "${{ matrix.module }}/package-lock.json" ]; then
-            npm ci
-          else
-            npm install
-          fi
+            - name: Install dependencies (${{ matrix.module }})
+              working-directory: ${{ matrix.module }}
+              run: npm ci #  Use npm ci for consistent installs with package-lock.json
 
-      - name: Install Playwright Browsers (${{ matrix.module }})
-        working-directory: ${{ matrix.module }}
-        run: npx playwright install --with-deps
+            - name: Install Playwright Browsers (${{ matrix.module }})
+              working-directory: ${{ matrix.module }}
+              run: npx playwright install --with-deps
 
-      - name: Run Playwright tests (${{ matrix.module }})
-        working-directory: ${{ matrix.module }}
-        run: npx playwright test
+            - name: Run Playwright tests (${{ matrix.module }})
+              working-directory: ${{ matrix.module }}
+              run: npx playwright test
 
-      - name: Upload Playwright Report (${{ matrix.module }})
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: playwright-report-${{ matrix.module }}-${{ matrix.node-version }}
-          path: ${{ matrix.module }}/playwright-report/
-          retention-days: 10
+            - name: Upload Playwright Report (${{ matrix.module }})
+              if: always()
+              uses: actions/upload-artifact@v4
+              with:
+                name: playwright-report-${{ matrix.module }}
+                path: ${{ matrix.module }}/playwright-report/
+                retention-days: 10
