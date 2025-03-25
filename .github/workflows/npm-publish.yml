@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [18, 20]  # Test with different Node.js versions if needed
+        node-version: [22]  # Test with different Node.js versions if needed
         module: [module1, module2] # Define modules here
 
     steps:
