@@ -1,0 +1,17 @@
+
+
+FROM mcr.microsoft.com/playwright:focal
+
+# copy project (including tests)
+COPY . /api
+
+WORKDIR .api
+
+# Install dependencies
+RUN npm install
+
+
+# Run playwright test
+CMD [ "npx", "playwright", "test", "--reporter=list" ]
+
+
