@@ -4,7 +4,7 @@ FROM mcr.microsoft.com/playwright:focal
 # copy project (including tests)
 COPY . /api
 
-WORKDIR .api
+WORKDIR ./api
 
 # Install dependencies
 RUN npm install
