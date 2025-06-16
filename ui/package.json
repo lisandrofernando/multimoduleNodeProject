@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test": "npx playwright test",
+    "test": "npx playwright test --headed",
+    "test-debug": "npx playwright test --debug --headed",
+    "code-gen": "npx playwright codegen google.com",
     "test:allure": "npx allure generate ./allure-results --clean",
     "test:allure:open": "npx allure open ./allure-report",
     "test:allure:report": "npx allure generate ./allure-results --clean && npx allure open ./allure-report",
