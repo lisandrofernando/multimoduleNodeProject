@@ -14,6 +14,7 @@ test('Web Test Client App login', async ({ page }) => {
    await loginPage.login(dataset.email, dataset.password);
    const dashboardPage = poManager.getDashboardPage();
    await dashboardPage.searchProduct(dataset.productName);
+
    await dashboardPage.goToCart();
  
    await page.locator("div li").first().waitFor();
