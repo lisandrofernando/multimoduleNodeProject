@@ -13,7 +13,7 @@ test('UI Basic Positive Test', async ({ page }) => {
 });
 
  
-test.only('Web Test Client App login', async ({ page }) => {
+test('Web Test Client App login', async ({ page }) => {
    //js file- Login js, DashboardPage
    const email = "anshika@gmail.com";
    const productName = 'ZARA COAT 3';
