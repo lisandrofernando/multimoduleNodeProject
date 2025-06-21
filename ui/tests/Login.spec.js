@@ -4,7 +4,7 @@ const {POManager} = require('../pageobjects/POManager');
 const dataset = JSON.parse(JSON.stringify(require('../utils/placeorderTestData.json')));
 
 
-test.only('Web Test Client App login', async ({ page }) => {
+test('Web Test Client App login', async ({ page }) => {
    //js file- Login js, DashboardPage
    
    const products = page.locator(".card-body");

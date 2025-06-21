@@ -105,6 +105,4 @@ test('Web Test GetBy Client App login', async ({ page }) => {
   
     await page.getByText('PLACE ORDER').click();
     await expect(page.getByText('THANKYOU FOR THE ORDER')).toBeVisible();
-
-  
  });

@@ -4,6 +4,8 @@
   "main": "index.js",
   "scripts": {
     "test": "npx playwright test --headed",
+    "webTests": "npx playwright test --headed --grep @web",
+    "test-headless": "npx playwright test",
     "test-debug": "npx playwright test --debug --headed",
     "code-gen": "npx playwright codegen google.com",
     "test:allure": "npx allure generate ./allure-results --clean",
@@ -28,6 +30,8 @@
   },
   "dependencies": {
     "allure-commandline": "^2.34.0",
-    "allure-playwright": "^3.2.1"
+    "allure-playwright": "^3.2.1",
+    "cross-env": "^7.0.3",
+    "dotenv": "^16.5.0"
   }
 }
