@@ -1,7 +1,7 @@
 # multimoduleNodeProject
 # General command to run playwright: npx playwroght test
 # What is the difference between selenium and playwright web browsing testing?
-
+# The difference between selenium and playwright 
 # playwright.config.js is the test runner 
 # The key words inside the test functions browser or page are playwright fixtures and to be recognized in playwright we need to wrapp it inside ({browser, or page})
 # browser.newContext() the context is to create a new instance of the browser anytime we launch a browser
@@ -11,3 +11,4 @@
 # await page.waitForLoadState('networkidle'); this step waits untill the the page loads network json call, the alternative is waitFor() method, but this method also waits for a single element, to return multiple elements first().waitFor()
 # When running playwright --debug will open the debug window and from there we can keep working on tests.
 # Code gen npx playwright codegen http://google.com
+# In playwright we can customize the test behaviors creating custom fixtures and call it direct into our tests
