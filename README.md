@@ -1,7 +1,8 @@
 # multimoduleNodeProject
 # General command to run playwright: npx playwroght test
 # What is the difference between selenium and playwright web browsing testing?
-# The difference between selenium and playwright 
+# Selenium uses Webdriver protocol to communicate with browsers, relying on browser specific drivers, client server architecture where test script communicate with the browser via driver, which can introduce latency
+# Playwright uses single WebSocket connection for direct communication with browsers, offering faster and more reliable control, auto waiting for elements to be ready, reducing flakiness in tests
 # playwright.config.js is the test runner 
 # The key words inside the test functions browser or page are playwright fixtures and to be recognized in playwright we need to wrapp it inside ({browser, or page})
 # browser.newContext() the context is to create a new instance of the browser anytime we launch a browser
@@ -31,3 +32,4 @@
 # If we want to stop the call from reaching the browser we can use page.route('**/*.css', route=> route.abort())
 # If we want to track the calls made in the browser we can use page.on('request', request=> console.log(request.url()))
 # page.on('response', response=> console.log(response.url(), response.status()))
+# In JS the promises could be rejected, pending or resolved
